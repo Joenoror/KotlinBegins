@@ -15,7 +15,9 @@ class MainActivity : AppCompatActivity() {
         //arrays()
         //maps()
         //loops()
-        nullSafety()
+        //nullSafety()
+        //funciones()
+        classes()
 
     }
     private fun variablesYConstantes(){
@@ -255,17 +257,54 @@ class MainActivity : AppCompatActivity() {
 
         println(mySafetyString!!)
 
-        if(mySafetyString != null){
+        /*if(mySafetyString != null){
             println(mySafetyString!!)
         }
         else{
             println(mySafetyString)
         }
-
+        */
         //Safecalls
         println(mySafetyString?.length)
 
+        //Este código entre llaves sólo se va a ejecutar cuando mySafetyString no sea nulo
+        mySafetyString?.let {
+            println(it)
+        } ?: run{
+            println(mySafetyString)
+        }
 
+
+    }
+
+    private fun funciones(){
+        sayMyName("Jose", 28)
+        val sumResult = (sumTwoNumbers(10,20))
+        println(sumResult)
+        println(sumTwoNumbers(sumTwoNumbers(10,20),sumTwoNumbers(1,-5)))
+
+
+    }
+    fun sayHello(){
+        println("Hello")
+    }
+    //Funciones con parámetros
+    fun sayMyName(name: String, age:Int){
+        println("Hello, my name is $name and I'm $age")
+    }
+    //Funcion de retorno
+    fun sumTwoNumbers(firstNumer:Int, secondNumber:Int) : Int {
+        val sum = firstNumer+secondNumber
+        return sum
+    }
+
+    private fun classes(){
+        val jose = Programmer("Jose", 27, arrayOf(Programmer.Language.KOTLIN,Programmer.Language.JAVA),null)
+        println(jose.name)
+        jose.age = 28
+        val rafa = Programmer("Rafa", 25, arrayOf(Programmer.Language.JAVASCRIPT,Programmer.Language.JAVA), arrayOf(jose))
+
+        println("${rafa.name} es amigo de ${rafa.friends?.first()?.name}")
     }
 
 }
